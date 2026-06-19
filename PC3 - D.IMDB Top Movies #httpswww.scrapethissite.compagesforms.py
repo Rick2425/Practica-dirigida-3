@@ -82,6 +82,47 @@ for fila in filas[:20]:
     })
 
 print("PARTE II - Registros recuperados:")
+
+# ==========================================
+# PARTE III. PROCESAMIENTO Y ANÁLISIS
+# ==========================================
+
+# Crear un DataFrame con pandas
+df = pd.DataFrame(registros)
+
+# Limpieza y transformación de datos
+df["equipo"] = df["equipo"].str.strip()
+df["anio"] = pd.to_numeric(df["anio"], errors="coerce")
+df["victorias"] = pd.to_numeric(df["victorias"], errors="coerce")
+df["derrotas"] = pd.to_numeric(df["derrotas"], errors="coerce")
+df["porcentaje_victoria"] = pd.to_numeric(df["porcentaje_victoria"], errors="coerce")
+
+# Eliminar registros con datos vacíos importantes
+df = df.dropna(subset=["equipo", "anio", "victorias", "derrotas", "porcentaje_victoria"])
+
+# Crear una nueva columna transformada
+df["total_partidos"] = df["victorias"] + df["derrotas"]
+
+print("\nPARTE III - DataFrame procesado:")
+print(df)
+
+# Obtener tres estadísticas descriptivas relevantes
+promedio_victorias = df["victorias"].mean()
+promedio_derrotas = df["derrotas"].mean()
+maximo_porcentaje_victoria = df["porcentaje_victoria"].max()
+
+print("\nEstadísticas descriptivas:")
+print("Promedio de victorias:", round(promedio_victorias, 2))
+print("Promedio de derrotas:", round(promedio_derrotas, 2))
+print("Máximo porcentaje de victoria:", round(maximo_porcentaje_victoria, 3))
+
+# Explicación en dos líneas
+print("\nInterpretación:")
+print("Los resultados permiten conocer el rendimiento promedio de los equipos según sus victorias y derrotas.")
+print("Además, el porcentaje máximo de victoria identifica al equipo con mejor desempeño dentro de los registros analizados.")
+
+# Guardar el DataFrame en un archivo CSV
+df.to_csv("registros_hockey_procesados.csv", index=False, encoding="utf-8-sig")
 print(registros)
 print("Cantidad de registros obtenidos:", len(registros))
 
