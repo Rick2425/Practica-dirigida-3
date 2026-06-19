@@ -11,5 +11,7 @@
 <h3> <b>Integrantes del equipo:</b> </h3>
 <ul>
   <li>Cardenas Panduro, Ricardo Gabriel (Rick2425) (20241376) </li>
+  <li>Tuppia Paitan, Joaquin Francisco (JTPXD1) (20241405) </li>
+
 
 </ul>
