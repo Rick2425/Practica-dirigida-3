@@ -15,5 +15,45 @@
   <li>Almonacid Quispe, Jimmy Salomón (patatita1theoriginal) (20241374) </li>
   <li>Ortiz Huamani, Ricardo Fidel (ricardofortizh) (20240724) </li>
 
+  ![Gráfico de resultados](imagen.jpeg)
+  <li>Tengo un archivo llamado registros_hockey_scrapethissite.csv, generado a partir de datos extraídos de la página Scrape This Site sobre equipos de hockey.
+
+Necesito desarrollar la *Parte IV. Visualización (2 puntos)* de mi trabajo, cumpliendo con el siguiente requisito:
+
+* Generar un gráfico adecuado, puede ser de barras, líneas o pastel.
+* Interpretar brevemente el resultado.
+
+Quiero que el código esté hecho en *R con ggplot2* y que use una estética similar a este estilo:
+
+* Gráfico de barras horizontal usando geom_col().
+* Ordenar las categorías con reorder().
+* Usar coord_flip().
+* Añadir etiquetas con geom_text().
+* Usar theme_bw().
+* Quitar la leyenda.
+* Título centrado, en negrita.
+* Subtítulo centrado.
+* Fondo del panel color khaki1.
+* Texto del eje Y en color blue4, tamaño 9 y negrita.
+* Ticks en color lightblue.
+* Quitar líneas menores y líneas principales del eje Y.
+* Guardar el gráfico con ggsave() en formato PNG, con ancho 9, alto 5 y resolución 300 dpi.
+
+El gráfico debe usar el archivo registros_hockey_scrapethissite.csv.
+La variable principal recomendada es porcentaje_victoria, para mostrar el *Top 10 equipos con mayor porcentaje de victoria*.
+También debe crear una columna combinada llamada equipo_anio, uniendo el nombre del equipo y el año.
+
+El código debe incluir:
+
+1. Carga de librerías.
+2. Lectura del CSV.
+3. Transformación de variables numéricas.
+4. Creación del Top 10.
+5. Gráfico con estética personalizada.
+6. Guardado del gráfico.
+7. Interpretación breve del resultado con cat().
+
+Dame solo el código completo en R, bien comentado y separado por secciones</li>
+
 
 </ul>
