@@ -1,4 +1,3 @@
-# Parte 1: Programas en Red
 # ==========================================
 # LIBRERÍAS NECESARIAS
 # ==========================================
@@ -6,18 +5,21 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import re
 import requests
+# ==========================================
 
+
+## Parte 1: Programas en Red
 # 1. Definir la URL objetivo
 url = "https://www.scrapethissite.com/pages/forms/"
 
 try:
     # 2. Realizar la petición HTTP GET
-    response = requests.get(url)
+    respuesta_servidor = requests.get(url)
     
     # Levantar una excepción si hubo un error en la petición HTTP (códigos 4xx o 5xx)
-    response.raise_for_status()
+    respuesta_servidor.raise_for_status()
     
-    print("--- Resultados de la Conexión ---")
+    print("--- DATOS DE CONEXIÓN ---")
     
     # 3. Mostrar el status_code
     print(f"Status Code: {response.status_code}")
