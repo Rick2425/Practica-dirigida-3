@@ -128,3 +128,120 @@ df.to_csv("registros_hockey_procesados.csv", index=False, encoding="utf-8-sig")
 print(registros)
 print("Cantidad de registros obtenidos:", len(registros))
 
+# ============================================================
+# PARTE IV. VISUALIZACIÓN
+# ============================================================
+
+# Librerías necesarias
+library(tidyverse)
+
+# Leer el archivo CSV generado en la recuperación de datos
+datos_hockey <- read_csv("registros_hockey_scrapethissite.csv")
+
+# Verificar datos
+print(datos_hockey)
+
+# Asegurar que las variables numéricas estén correctamente transformadas
+datos_hockey <- datos_hockey %>%
+  mutate(
+    anio = as.numeric(anio),
+    victorias = as.numeric(victorias),
+    derrotas = as.numeric(derrotas),
+    porcentaje_victoria = as.numeric(porcentaje_victoria),
+    equipo_anio = paste(equipo, anio, sep = " - ")
+  )
+
+# Seleccionar los 10 equipos con mayor porcentaje de victoria
+top_10_equipos <- datos_hockey %>%
+  arrange(desc(porcentaje_victoria)) %>%
+  slice_head(n = 10)
+
+# ============================================================
+# GRÁFICO DE BARRAS: TOP 10 EQUIPOS POR PORCENTAJE DE VICTORIA
+# ============================================================
+
+grafico_top10_hockey <- ggplot(
+  top_10_equipos,
+  aes(
+    x = reorder(equipo_anio, porcentaje_victoria),
+    y = porcentaje_victoria,
+    fill = equipo_anio
+  )
+) +
+  geom_col(width = 0.75) +
+  coord_flip(clip = "off") +
+  geom_text(
+    aes(label = round(porcentaje_victoria, 3)),
+    hjust = -0.2,
+    colour = "black",
+    size = 3.5
+  ) +
+  labs(
+    title = "Top 10 equipos con mayor porcentaje de victoria",
+    subtitle = "Datos recuperados desde Scrape This Site",
+    x = "Equipo y año",
+    y = "Porcentaje de victoria"
+  ) +
+  scale_y_continuous(
+    limits = c(0, max(top_10_equipos$porcentaje_victoria) + 0.1),
+    expand = c(0, 0)
+  ) +
+  theme_bw() +
+  theme(
+    legend.position = "none",
+    
+    plot.title = element_text(
+      size = 15,
+      face = "bold",
+      hjust = 0.5
+    ),
+    
+    plot.subtitle = element_text(
+      size = 10,
+      hjust = 0.5
+    ),
+    
+    axis.title.x = element_text(size = 10),
+    axis.title.y = element_text(size = 10),
+    
+    axis.text.x = element_text(
+      color = "gray25",
+      size = 8
+    ),
+    
+    axis.text.y = element_text(
+      color = "blue4",
+      size = 9,
+      face = "bold"
+    ),
+    
+    axis.ticks = element_line(color = "lightblue"),
+    
+    panel.background = element_rect(
+      fill = "khaki1",
+      color = NA
+    ),
+    
+    plot.background = element_rect(
+      fill = "white",
+      color = NA
+    ),
+    
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor = element_blank(),
+    
+    plot.margin = margin(10, 30, 10, 10)
+  )
+
+# Mostrar gráfico
+grafico_top10_hockey
+
+# Guardar gráfico
+ggsave(
+  filename = "top_10_equipos_hockey.png",
+  plot = grafico_top10_hockey,
+  width = 9,
+  height = 5,
+  dpi = 300
+)
+
