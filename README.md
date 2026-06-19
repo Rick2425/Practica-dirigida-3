@@ -12,6 +12,7 @@
 <ul>
   <li>Cardenas Panduro, Ricardo Gabriel (Rick2425) (20241376) </li>
   <li>Tuppia Paitan, Joaquin Francisco (JTPXD1) (20241405) </li>
+  <li>Ortiz Huamani, Ricardo Fidel (ricardofortizh) (20240724) </li>
 
 
 </ul>
